@@ -1,3 +1,25 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 function greet(person) {
     return 'Hello' + person;
 }
@@ -42,11 +64,11 @@ var strLength1 = someValue.length;
 function isNullFun(maybeString) {
     var onlyString = maybeString;
 }
-var x;
+var xa;
 isUndefined();
-console.log(2 * x);
+console.log(2 * xa);
 function isUndefined() {
-    x = 10;
+    xa = 10;
 }
 function printEmployeeInformation(emp) {
     console.log("Name: " + emp.name);
@@ -171,3 +193,32 @@ function push(array) {
 }
 var a = [];
 push(a, 1, 2, 3);
+// typescript 数组
+// 展开
+var x;
+var y;
+var z;
+var five_array = [0, 1, 2, 3, 4];
+x = five_array[0], y = five_array[1], z = five_array.slice(2);
+console.log(x, y, z);
+// 遍历
+var colors = ['red', 'green', 'blue'];
+colors.forEach(function (element) {
+    console.log(element);
+});
+// typescript 对象
+var person = {
+    name1: "Semlinker",
+    gender: "Male"
+};
+var name1 = person.name1, gender = person.gender;
+var person1 = {
+    name2: "Semlinker",
+    gender: "Male",
+    address: "Xiamen"
+};
+// 组装对象
+var personWithAge = __assign(__assign({}, person), { age: 33 });
+// 获取除了某些项外的其它项
+var name2 = person1.name2, rest = __rest(person1, ["name2"]);
+// typescript 接口

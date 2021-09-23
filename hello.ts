@@ -69,12 +69,12 @@ function isNullFun (maybeString: string | undefined | null) {
   const onlyString: string = maybeString!;
 }
 
-let x!: number;
+let xa!: number;
 isUndefined();
-console.log(2 * x)
+console.log(2 * xa)
 
 function isUndefined() {
-  x = 10;
+  xa = 10;
 }
 
 
@@ -295,4 +295,42 @@ function push(array, ...items) {
 let a = [];
 push(a, 1, 2, 3);
 
-// 函数重载
+
+// typescript 数组
+
+// 展开
+let x: number; let y: number; let z: Array<number>;
+let five_array = [0,1,2,3,4];
+[x, y, ...z] = five_array;
+console.log(x, y, z);
+
+// 遍历
+let colors: string[] = ['red', 'green', 'blue'];
+colors.forEach(element => {
+  console.log(element);
+});
+
+
+// typescript 对象
+
+let person = {
+  name1: "Semlinker",
+  gender: "Male",
+};
+
+let { name1, gender } = person;
+
+let person1 = {
+  name2: "Semlinker",
+  gender: "Male",
+  address: "Xiamen",
+};
+
+// 组装对象
+let personWithAge = { ...person, age: 33 };
+
+// 获取除了某些项外的其它项
+let { name2, ...rest } = person1;
+
+
+// typescript 接口
