@@ -333,4 +333,138 @@ let personWithAge = { ...person, age: 33 };
 let { name2, ...rest } = person1;
 
 
-// typescript 接口
+// ====> typescript 接口
+
+// 对象的形状
+interface Person {
+  name: string,
+  age: number,
+}
+
+let semlinker: Person = {
+  name: 'semlinker',
+  age: 12,
+}
+
+// 可选只读属性
+interface Person1 {
+  readonly name: string;
+  age?: number;
+}
+
+let ro: ReadonlyArray<number> = [1, 2, 3, 4];
+// ro.push(5) // Error Property 'push' does not exist on type 'readonly number[]'.
+
+
+// 任意属性
+interface Person2 {
+  name: string,
+  age?: number,
+  [propName: string]: any,
+}
+
+const p1:Person2 = { name: 'p1' };
+const p2:Person2 = { name: 'p2', age: 18 };
+const p3:Person2 = { name: 'p3', sex: 1 };
+console.log(p1, p2, p3);
+
+// 接口名称和类型别名区别
+// 接口
+interface PointDiff {
+  x: number,
+  y: number,
+}
+interface SetPointDiff {
+  (x: number, y: number): void;
+}
+
+// 别名
+type PointDiff1 = {
+  x: number,
+  y: number,
+}
+
+type setPointDiff1 = (x: number, y: number) => void;
+
+// 与接口不一样的是 别名可以用于其他类型 原始类型、联合类型、元祖
+type Name = string;
+type PartialPointDiffX = { x: number; };
+type PartialPointDiffY = { y: number; };
+// union
+type PartialPoint = PartialPointDiffX | PartialPointDiffY;
+// tuple
+type Data = [number, string];
+
+// 继承 ====> 扩展 接口和类型名称不互斥 
+// 接口 extends 其他类型
+// 类型 & 类型和接口
+
+// interface extends interface
+interface PartialPointExtendsX { x: number; }
+interface PointExtends extends PartialPointExtendsX {
+  y: number
+}
+
+const extendsX:PointExtends = { x: 1, y: 2 }
+console.log('interface继承interface:' + JSON.stringify(extendsX));
+
+// type extends type
+type PartialPointExtendsX1 = { x: number }
+type PointExtends1 = PartialPointExtendsX1 & { y: number }
+
+const extendsX1:PointExtends = { x: 1, y: 2 }
+console.log('type继承type:' + JSON.stringify(extendsX1));
+
+// interface extends type
+type PartialPointExtendsX2 = { x: number; };
+interface extendsX2 extends PartialPointExtendsX2 { y: number; }
+
+const extendsX2:PointExtends = { x: 1, y: 2 }
+console.log('interface继承type:' + JSON.stringify(extendsX2));
+
+// type extends interface
+interface PartialPointExtendsX3 { x: number; }
+type PointExtends2 = PartialPointExtendsX3 & { y: number }
+
+const extendsX3:PointExtends2 = { x: 1, y: 2 }
+console.log('type继承interface:' + JSON.stringify(extendsX2));
+
+// implements
+// 类可以实现接口或者类型别名 但不能实现使用类型别名定义的联合类型
+
+interface PointImplement {
+  x: number,
+  y: number,
+}
+
+class SomePoint implements PointImplement {
+  x = 1;
+  y = 2;
+}
+type PointImplement1 = {
+  x: number,
+  y: number,
+}
+
+class SomePoint1 implements PointImplement1 {
+  x = 1;
+  y = 2;
+}
+
+type PartialPoint1 = { x: number } | { y: number };
+
+// class SomePartialPoint1 implements PartialPoint1 { // Error A class can only implement an object type or intersection of object types with statically known members.
+//   x = 1;
+//   y = 2;
+// }
+
+// 接口可以多次定义自动合并
+interface PointMerge {
+  x: number;
+}
+interface PointMerge {
+  y: number;
+}
+
+const pointMerge: PointMerge = { x: 1, y: 2 };
+

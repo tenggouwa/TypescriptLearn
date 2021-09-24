@@ -221,4 +221,41 @@ var person1 = {
 var personWithAge = __assign(__assign({}, person), { age: 33 });
 // 获取除了某些项外的其它项
 var name2 = person1.name2, rest = __rest(person1, ["name2"]);
-// typescript 接口
+var semlinker = {
+    name: 'semlinker',
+    age: 12
+};
+var ro = [1, 2, 3, 4];
+var p1 = { name: 'p1' };
+var p2 = { name: 'p2', age: 18 };
+var p3 = { name: 'p3', sex: 1 };
+console.log(p1, p2, p3);
+var extendsX = { x: 1, y: 2 };
+console.log('interface继承interface:' + JSON.stringify(extendsX));
+var extendsX1 = { x: 1, y: 2 };
+console.log('type继承type:' + JSON.stringify(extendsX1));
+var extendsX2 = { x: 1, y: 2 };
+console.log('interface继承type:' + JSON.stringify(extendsX2));
+var extendsX3 = { x: 1, y: 2 };
+console.log('type继承interface:' + JSON.stringify(extendsX2));
+var SomePoint = /** @class */ (function () {
+    function SomePoint() {
+        this.x = 1;
+        this.y = 2;
+    }
+    return SomePoint;
+}());
+var SomePoint1 = /** @class */ (function () {
+    function SomePoint1() {
+        this.x = 1;
+        this.y = 2;
+    }
+    return SomePoint1;
+}());
+var SomePartialPoint1 = /** @class */ (function () {
+    function SomePartialPoint1() {
+        this.x = 1;
+        this.y = 2;
+    }
+    return SomePartialPoint1;
+}());
