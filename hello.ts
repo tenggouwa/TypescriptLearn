@@ -520,6 +520,6 @@ if (employee.fullName) {
   console.log(employee.fullName);
 }
 
-// tsc hello.ts -t es5 !!!!!!!!!!!!!
+// tsc hello.ts -t es5 !!!!!!!!!!!!!！
 
 
