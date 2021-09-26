@@ -209,13 +209,13 @@ colors.forEach(function (element) {
 // typescript 对象
 var person = {
     name1: "Semlinker",
-    gender: "Male"
+    gender: "Male",
 };
 var name1 = person.name1, gender = person.gender;
 var person1 = {
     name2: "Semlinker",
     gender: "Male",
-    address: "Xiamen"
+    address: "Xiamen",
 };
 // 组装对象
 var personWithAge = __assign(__assign({}, person), { age: 33 });
@@ -223,7 +223,7 @@ var personWithAge = __assign(__assign({}, person), { age: 33 });
 var name2 = person1.name2, rest = __rest(person1, ["name2"]);
 var semlinker = {
     name: 'semlinker',
-    age: 12
+    age: 12,
 };
 var ro = [1, 2, 3, 4];
 var p1 = { name: 'p1' };
@@ -252,10 +252,50 @@ var SomePoint1 = /** @class */ (function () {
     }
     return SomePoint1;
 }());
-var SomePartialPoint1 = /** @class */ (function () {
-    function SomePartialPoint1() {
-        this.x = 1;
-        this.y = 2;
+var pointMerge = { x: 1, y: 2 };
+// 类的属性与方法
+var Greeter = /** @class */ (function () {
+    // 构造函数 - 执行初始化操作
+    function Greeter(message) {
+        this.greeting = message;
     }
-    return SomePartialPoint1;
+    // 静态方法
+    Greeter.getClassName = function () {
+        return "Class name is Greeter";
+    };
+    // 成员方法
+    Greeter.prototype.greet = function () {
+        return "Hello, " + this.greeting;
+    };
+    // 静态属性
+    Greeter.cname = "Greeter";
+    return Greeter;
 }());
+var greeter = new Greeter("world");
+//  访问器
+var passcode = "Hello TypeScript";
+var Employee = /** @class */ (function () {
+    function Employee() {
+    }
+    Object.defineProperty(Employee.prototype, "fullName", {
+        get: function () {
+            return this._fullName;
+        },
+        set: function (newName) {
+            if (passcode && passcode == "Hello TypeScript") {
+                this._fullName = newName;
+            }
+            else {
+                console.log("Error: Unauthorized update of employee!");
+            }
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return Employee;
+}());
+var employee = new Employee();
+employee.fullName = "Semlinker";
+if (employee.fullName) {
+    console.log(employee.fullName);
+}

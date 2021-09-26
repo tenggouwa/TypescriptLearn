@@ -468,3 +468,58 @@ interface PointMerge {
 
 const pointMerge: PointMerge = { x: 1, y: 2 };
 
+
+// 类的属性与方法
+class Greeter {
+  // 静态属性
+  static cname: string = "Greeter";
+  // 成员属性
+  greeting: string;
+
+  // 构造函数 - 执行初始化操作
+  constructor(message: string) {
+    this.greeting = message;
+  }
+
+  // 静态方法
+  static getClassName() {
+    return "Class name is Greeter";
+  }
+
+  // 成员方法
+  greet() {
+    return "Hello, " + this.greeting;
+  }
+}
+
+let greeter = new Greeter("world");
+
+//  访问器
+
+let passcode = "Hello TypeScript";
+
+class Employee {
+  private _fullName: string;
+
+  get fullName(): string {
+    return this._fullName;
+  }
+
+  set fullName(newName: string) {
+    if (passcode && passcode == "Hello TypeScript") {
+      this._fullName = newName;
+    } else {
+      console.log("Error: Unauthorized update of employee!");
+    }
+  }
+}
+
+let employee = new Employee();
+employee.fullName = "Semlinker";
+if (employee.fullName) {
+  console.log(employee.fullName);
+}
+
+// tsc hello.ts -t es5 !!!!!!!!!!!!!
+
+
